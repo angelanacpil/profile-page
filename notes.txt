@@ -1,0 +1,9 @@
+PRIMARY PALETTE
+main: '#E91E63'
+light: '#ff558f'
+dark: '#AC1C4D'
+
+SECONDARY PALETTE
+main: '#899499'
+light: '#D3D3D3'
+dark: '#818589'
