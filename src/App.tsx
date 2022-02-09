@@ -1,7 +1,6 @@
 // IMPORTS
 import "./styles.css";
 import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import ProfileCard from "./components/ProfileCard";

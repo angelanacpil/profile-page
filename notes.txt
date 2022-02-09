@@ -7,3 +7,13 @@ SECONDARY PALETTE
 main: '#899499'
 light: '#D3D3D3'
 dark: '#818589'
+
+GRAY
+#e1e1e1
+
+SETTINGS CARD:
+X- Remove Line 60; fix 
+X- Properly divide the content into pairs (label & field) 
+XTypography & Field inside 1 Grid Item 
+X- Align the button accordingly 
+X- Button Divider on top

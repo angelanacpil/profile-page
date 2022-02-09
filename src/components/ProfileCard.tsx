@@ -61,7 +61,7 @@ export default function ProfileCard(props: any) {
         </Grid>
         {/* CARD HEADER END */}
 
-        {/* BODY: DETAILS */}
+        {/* DETAILS */}
         <Grid container>
           <Grid item xs={6}>
             <Typography style={styles.details}>Detail 1</Typography>
@@ -81,7 +81,7 @@ export default function ProfileCard(props: any) {
           <Button
             variant="contained"
             color="secondary"
-            sx={{ width: "99%", p: 1, my: 2, fontWeight: "bold" }}
+            sx={{ width: "99%", p: 1, my: 2 }}
           >
             View Public Profile
           </Button>
