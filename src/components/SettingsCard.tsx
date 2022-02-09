@@ -3,6 +3,7 @@ import React, { CSSProperties } from "react";
 import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
 import CardContent from "@mui/material/CardContent";
+import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
@@ -40,17 +41,13 @@ export default function SettingsCard(props: any) {
       <CardContent
         sx={{
           p: 3,
+          mb: { xs: 0, md: 3 },
           maxHeight: { md: "40vh" },
           textAlign: { xs: "center", md: "start" }
         }}
       >
         {/* FIELDS */}
-        <Grid
-          container
-          direction={{ xs: "column", md: "row" }}
-          alignItems="stretch"
-          spacing={4}
-        >
+        <Grid container direction={{ xs: "column", md: "row" }} spacing={4}>
           {/* ROW 1 */}
           {/* FIRST NAME */}
           <Grid item xs={6}>
@@ -125,21 +122,22 @@ export default function SettingsCard(props: any) {
               label={props.country}
             />
           </Grid>
-
-          {/* BUTTON */}
-          <Grid item xs={12}>
-            <Divider></Divider>
-            <Button
-              sx={{ my: "1rem" }}
-              size="large"
-              variant="contained"
-              color="secondary"
-            >
-              Update
-            </Button>
-          </Grid>
         </Grid>
       </CardContent>
+
+      {/* BUTTON - could've been in the grid above but the divider gets padded inside...*/}
+      <Divider></Divider>
+      <Box
+        sx={{
+          p: 2,
+          display: "flex",
+          justifyContent: { xs: "center", md: "start" }
+        }}
+      >
+        <Button size="large" variant="contained" color="secondary">
+          Update
+        </Button>
+      </Box>
     </Card>
   );
 }
