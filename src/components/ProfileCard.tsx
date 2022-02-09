@@ -3,6 +3,8 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
+import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
+import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 
 // STYLES
@@ -14,7 +16,7 @@ const styles = {
   value: {
     padding: "1rem 2rem",
     borderTop: "1px solid #e1e1e1",
-    color: "#ff558f"
+    color: "#899499"
   }
 };
 
@@ -29,15 +31,32 @@ export default function ProfileCard(props: any) {
         alignItems="center"
       >
         {/* CARD HEADER START */}
-        <Grid item sx={{ p: "1.5rem 0rem" }}>
+        <Grid item sx={{ p: "1.5rem 0rem", textAlign: "center" }}>
           {/* PROFILE PHOTO */}
-          <Avatar
-            sx={{ width: 100, height: 100, mb: 1.5 }}
-            src="https://media.glamour.com/photos/5a425fd3b6bcee68da9f86f8/master/pass/best-face-oil.png"
-          ></Avatar>
+          <Badge
+            overlap="circular"
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            badgeContent={
+              <PhotoCameraIcon
+                sx={{
+                  border: "5px solid white",
+                  backgroundColor: "#ff558f",
+                  borderRadius: "50%",
+                  padding: ".2rem",
+                  width: 35,
+                  height: 35
+                }}
+              ></PhotoCameraIcon>
+            }
+          >
+            <Avatar
+              sx={{ width: 100, height: 100, mb: 1.5 }}
+              src="https://media.glamour.com/photos/5a425fd3b6bcee68da9f86f8/master/pass/best-face-oil.png"
+            ></Avatar>
+          </Badge>
 
           {/* DESCRIPTION */}
-          <Typography variant="h5">{props.name}</Typography>
+          <Typography variant="h6">{props.name}</Typography>
           <Typography color="text.secondary">{props.sub}</Typography>
         </Grid>
         {/* CARD HEADER END */}
@@ -60,9 +79,9 @@ export default function ProfileCard(props: any) {
         {/* BUTTON */}
         <Grid item style={styles.details} sx={{ width: "100%" }}>
           <Button
+            variant="contained"
             color="secondary"
-            variant="outlined"
-            sx={{ width: "99%", p: 1, my: 2 }}
+            sx={{ width: "99%", p: 1, my: 2, fontWeight: "bold" }}
           >
             View Public Profile
           </Button>

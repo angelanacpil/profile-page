@@ -29,7 +29,8 @@ export default function App() {
                 width: "100vw",
                 height: "35vh",
                 objectFit: "cover",
-                objectPosition: "50% 50%"
+                objectPosition: "50% 50%",
+                position: "relative"
               }}
               src="https://iris2.gettimely.com/images/default-cover-image.jpg"
             />
@@ -40,7 +41,11 @@ export default function App() {
             container
             direction={{ xs: "column", md: "row" }}
             spacing={3}
-            sx={{ mb: 2, px: { xs: 0, md: 7 } }}
+            sx={{
+              position: "absolute",
+              top: "20vh",
+              px: { xs: 0, md: 7 }
+            }}
           >
             {/* PROFILE CARD */}
             <Grid item md={3}>
