@@ -2,7 +2,7 @@
 import "./styles.css";
 import Grid from "@mui/material/Grid";
 import CssBaseline from "@mui/material/CssBaseline";
-import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ProfileCard from "./components/ProfileCard";
 import SettingsCard from "./components/SettingsCard";
 
@@ -24,6 +24,7 @@ export default function App() {
         <Grid container direction="column" sx={{ overflowX: "hidden" }}>
           <Grid item xs={12} md={6}>
             <img
+              alt="avatar"
               style={{
                 width: "100vw",
                 height: "35vh",
