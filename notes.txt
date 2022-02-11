@@ -17,3 +17,7 @@ X- Properly divide the content into pairs (label & field)
 XTypography & Field inside 1 Grid Item 
 X- Align the button accordingly 
 X- Button Divider on top
+
+GLOBAL STATES?
+- Integrate SettingsCard into App or find another way 
+for components to access the same variables and props 

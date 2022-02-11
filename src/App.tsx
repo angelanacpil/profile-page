@@ -15,6 +15,23 @@ import "@fontsource/roboto/700.css";
 // STYLE & THEME
 const theme = createTheme();
 
+const mainUser = {
+  // DEFAULT VALUES
+  title: "CEO of Apple",
+  dt1: 32,
+  dt2: 40,
+  dt3: 50,
+  firstName: "Jane",
+  lastName: "Doe",
+  midName: "Baker",
+  gender: "female",
+  phone: "932-555-4247",
+  email: "janedoe@gmail.com",
+  pass: "password123"
+};
+
+const fullName = `${mainUser.firstName} ${mainUser.lastName}`;
+
 // APP
 export default function App() {
   return (
@@ -50,17 +67,25 @@ export default function App() {
             {/* PROFILE CARD */}
             <Grid item md={3}>
               <ProfileCard
-                name="Jane Doe"
-                sub="CEO of Apple"
-                dt1="32"
-                dt2="42"
-                dt3="100"
+                name={fullName}
+                sub={mainUser.title}
+                dt1={mainUser.dt1}
+                dt2={mainUser.dt2}
+                dt3={mainUser.dt3}
               ></ProfileCard>
             </Grid>
 
             {/* SETTINGS CARD */}
             <Grid item md={9}>
-              <SettingsCard></SettingsCard>
+              <SettingsCard
+                firstName={mainUser.firstName}
+                lastName={mainUser.lastName}
+                midName={mainUser.midName}
+                phone={mainUser.phone}
+                email={mainUser.email}
+                pass={mainUser.pass}
+                gender={mainUser.gender}
+              ></SettingsCard>
             </Grid>
           </Grid>
         </Grid>

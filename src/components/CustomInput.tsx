@@ -1,7 +1,6 @@
 // IMPORTS
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-
 //APP
 export default function CustomInput(props: any) {
   return (
@@ -19,7 +18,12 @@ export default function CustomInput(props: any) {
         onChange={props.onChange}
         disabled={props.dis}
         required={props.req}
-      />
+        type={props.type}
+        InputProps={props.InputProps}
+        select={props.select}
+      >
+        {props.content}
+      </TextField>
     </Box>
   );
 }
