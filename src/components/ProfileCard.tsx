@@ -6,6 +6,8 @@ import Avatar from "@mui/material/Avatar";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
+import { UserMain } from "../User";
+import React, { useContext } from "react";
 
 // STYLES
 const styles = {
@@ -22,6 +24,8 @@ const styles = {
 
 //APP
 export default function ProfileCard(props: any) {
+  const { user, setUser } = useContext(UserMain);
+
   return (
     <Card variant="outlined">
       <Grid
@@ -56,8 +60,10 @@ export default function ProfileCard(props: any) {
           </Badge>
 
           {/* DESCRIPTION */}
-          <Typography variant="h6">{props.name}</Typography>
-          <Typography color="text.secondary">{props.sub}</Typography>
+          <Typography variant="h6">
+            {user.firstName}&nbsp;{user.lastName}
+          </Typography>
+          <Typography color="text.secondary">{user.title}</Typography>
         </Grid>
         {/* CARD HEADER END */}
 
@@ -70,9 +76,9 @@ export default function ProfileCard(props: any) {
           </Grid>
           {/* VALUES */}
           <Grid item xs={6} sx={{ textAlign: "end" }}>
-            <Typography style={styles.value}>{props.dt1}</Typography>
-            <Typography style={styles.value}>{props.dt2}</Typography>
-            <Typography style={styles.value}>{props.dt3}</Typography>
+            <Typography style={styles.value}>{user.dt1}</Typography>
+            <Typography style={styles.value}>{user.dt2}</Typography>
+            <Typography style={styles.value}>{user.dt3}</Typography>
           </Grid>
         </Grid>
 
