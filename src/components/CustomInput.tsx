@@ -11,8 +11,8 @@ export default function CustomInput(props: any) {
       <TextField
         fullWidth
         margin="dense"
-        name="firstName"
         size="small"
+        name={props.name}
         value={props.value}
         onChange={props.onChange}
         disabled={props.dis}

@@ -29,15 +29,17 @@ export interface userType {
   dt2: number;
   dt3: number;
   firstName: string;
-
   lastName: string;
   midName: string;
-
   gender: string;
-
   phone: string;
-
   email: string;
-
   pass: string;
 }
+
+const handleUser = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUser((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value
+    }));
+  };

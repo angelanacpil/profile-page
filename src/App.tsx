@@ -49,33 +49,12 @@ export default function App() {
           >
             {/* PROFILE CARD */}
             <Grid item md={3}>
-              <h1
-                onClick={() =>
-                  setUser((prevState) => ({ ...prevState, name: "B" }))
-                }
-              >
-                {user.firstName}
-              </h1>
-              <ProfileCard
-              // name={fullName}
-              // sub={mainUser.title}
-              // dt1={mainUser.dt1}
-              // dt2={mainUser.dt2}
-              // dt3={mainUser.dt3}
-              ></ProfileCard>
+              <ProfileCard></ProfileCard>
             </Grid>
 
             {/* SETTINGS CARD */}
             <Grid item md={9}>
-              <SettingsCard
-              // firstName={mainUser.firstName}
-              // lastName={mainUser.lastName}
-              // midName={mainUser.midName}
-              // phone={mainUser.phone}
-              // email={mainUser.email}
-              // pass={mainUser.pass}
-              // gender={mainUser.gender}
-              ></SettingsCard>
+              <SettingsCard></SettingsCard>
             </Grid>
           </Grid>
         </Grid>

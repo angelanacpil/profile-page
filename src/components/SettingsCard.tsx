@@ -15,20 +15,44 @@ import Button from "@mui/material/Button";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import CustomInput from "./CustomInput";
-import { UserMain, userData } from "../User";
+import { UserMain } from "../User";
 
 //APP
 export default function SettingsCard(props: any) {
+  // STATES--------------------------------------------
+  //USER STATE
   const { user, setUser } = useContext(UserMain);
 
-  //TAB STATES
-  const [value, setValue] = React.useState("one");
-
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
+  const handleUser = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUser({ ...user, [event.target.name]: event.target.value });
   };
 
-  // GENDER SELECT STATES
+  //FORM STATE
+  const [edit, update] = useState({
+    // Initially EDIT, so it's disabled at first
+    disabled: true,
+    isEdit: true, //isEdit refers to the Button
+    showPassword: false
+  });
+
+  //TAB STATE
+  const [tabValue, setTabValue] = React.useState("one");
+
+  const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
+    setTabValue(newValue);
+  };
+
+  // BUTTON EDIT -> UPDATE + SUBMIT INFO
+  const changeButton = (event: any) => {
+    event.preventDefault();
+    edit.showPassword = false;
+    edit.disabled = !edit.disabled;
+    edit.isEdit = !edit.isEdit;
+    update({ ...edit });
+    console.log("user: ", user);
+  };
+
+  // GENDER SELECT
   const genderSelect = [
     {
       value: "male",
@@ -40,27 +64,13 @@ export default function SettingsCard(props: any) {
     }
   ];
 
-  // FORM STATES
-  const [umi, setUmi] = useState({
-    // DEFAULT VALUES
+  // TOGGLE PASSWORD VISIBILITY
+  const handlePassword = () => {
+    edit.showPassword = !edit.showPassword;
+    setUser({ ...user });
+  };
 
-    showPassword: false
-  });
-
-  // const changeField = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setUser({ ...user, [event.target.name]: event.target.value });
-  // };
-
-  // const changeField = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setUser((prevState: any) => ({ ...prevState, email: "mrB12@pwd.com" }));
-  // };
-
-  //BUTTON STATES
-  const [edit, update] = useState({
-    required: true,
-    disabled: true,
-    isEdit: true
-  });
+  // --------------------------------------------
 
   //RETURN
   return (
@@ -68,8 +78,8 @@ export default function SettingsCard(props: any) {
       {/* TABS */}
       <br></br>
       <Tabs
-        value={value}
-        onChange={handleChange}
+        value={tabValue}
+        onChange={handleTabChange}
         textColor="secondary"
         indicatorColor="secondary"
       >
@@ -99,19 +109,127 @@ export default function SettingsCard(props: any) {
               {/* ROW 1: FIRST NAME */}
               <Grid component="form" item xs={6}>
                 <CustomInput
-                  id="firstName"
                   name="firstName"
                   value={user.firstName}
                   title="First Name"
-                  onChange={() =>
-                    setUser((prevState) => ({
-                      ...prevState,
-                      [event.target.name]: event.target.value
-                    }))
-                  }
-                  // dis={edit.disabled}
-                  // req={edit.required}
+                  onChange={handleUser}
+                  dis={edit.disabled}
                 ></CustomInput>
+              </Grid>
+
+              {/* ROW 1: LAST NAME */}
+              <Grid component="form" item xs={6}>
+                <CustomInput
+                  name="lastName"
+                  value={user.lastName}
+                  onChange={handleUser}
+                  title="Last Name"
+                  dis={edit.disabled}
+                ></CustomInput>
+              </Grid>
+
+              {/* ROW 2: MIDDLE NAME */}
+              <Grid item xs={6}>
+                <CustomInput
+                  name="midName"
+                  value={user.midName}
+                  onChange={handleUser}
+                  title="Middle Name"
+                  dis={edit.disabled}
+                ></CustomInput>
+              </Grid>
+
+              {/* ROW 2: GENDER */}
+              <Grid item xs={6}>
+                <CustomInput
+                  select
+                  name="gender"
+                  value={user.gender}
+                  onChange={handleUser}
+                  title="Gender"
+                  dis={edit.disabled}
+                  //MAP THRU OPTIONS
+                  content={genderSelect.map((option) => (
+                    <MenuItem value={option.value}>{option.label}</MenuItem>
+                  ))}
+                ></CustomInput>
+              </Grid>
+
+              {/* ROW 3: PHONE */}
+              <Grid item xs={6}>
+                <CustomInput
+                  name="phone"
+                  value={user.phone}
+                  onChange={handleUser}
+                  title="Phone Number"
+                  dis={edit.disabled}
+                  //DIALING CODE (63+)
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">63+</InputAdornment>
+                    )
+                  }}
+                ></CustomInput>
+              </Grid>
+
+              {/* ROW 3: EMAIL */}
+              <Grid item xs={6}>
+                <CustomInput
+                  name="email"
+                  value={user.email}
+                  onChange={handleUser}
+                  title="Email Address"
+                  dis={edit.disabled}
+                ></CustomInput>
+              </Grid>
+
+              {/* ROW 4: PASSWORD */}
+              <Grid item xs={6}>
+                <CustomInput
+                  name="pass"
+                  value={user.pass}
+                  onChange={handleUser}
+                  title="Password"
+                  dis={edit.disabled}
+                  type={edit.showPassword ? "text" : "password"}
+                  // PASSWORD ICON
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={handlePassword}
+                          edge="end"
+                          disabled={edit.disabled}
+                        >
+                          {edit.showPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
+                ></CustomInput>
+              </Grid>
+
+              {/* BUTTON */}
+              <Grid
+                container
+                justifyContent={{ xs: "center", md: "flex-end" }}
+                item
+                xs={6}
+              >
+                <Button
+                  sx={{ p: "1rem 2rem", my: 2, height: "3rem" }}
+                  component="button"
+                  size="large"
+                  variant="contained"
+                  color="secondary"
+                  onClick={changeButton}
+                >
+                  {edit.isEdit === false ? "UPDATE" : "EDIT"}
+                </Button>
               </Grid>
             </Grid>
           </FormControl>
