@@ -1,10 +1,11 @@
 // IMPORTS
+import React, { createContext, useContext, useState } from "react";
 import "./styles.css";
 import Grid from "@mui/material/Grid";
 import CssBaseline from "@mui/material/CssBaseline";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ProfileCard from "./components/ProfileCard";
 import SettingsCard from "./components/SettingsCard";
+import { UserMain, userData } from "./User";
 
 // FONTS
 import "@fontsource/roboto/300.css";
@@ -12,30 +13,12 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
-// STYLE & THEME
-const theme = createTheme();
-
-const mainUser = {
-  // DEFAULT VALUES
-  title: "CEO of Apple",
-  dt1: 32,
-  dt2: 40,
-  dt3: 50,
-  firstName: "Jane",
-  lastName: "Doe",
-  midName: "Baker",
-  gender: "female",
-  phone: "932-555-4247",
-  email: "janedoe@gmail.com",
-  pass: "password123"
-};
-
-const fullName = `${mainUser.firstName} ${mainUser.lastName}`;
-
 // APP
 export default function App() {
+  const [user, setUser] = useState(userData);
+
   return (
-    <ThemeProvider theme={theme}>
+    <UserMain.Provider value={{ user, setUser }}>
       <CssBaseline>
         {/* BACKGROUND */}
         <Grid container direction="column" sx={{ overflowX: "hidden" }}>
@@ -66,30 +49,37 @@ export default function App() {
           >
             {/* PROFILE CARD */}
             <Grid item md={3}>
+              <h1
+                onClick={() =>
+                  setUser((prevState) => ({ ...prevState, name: "B" }))
+                }
+              >
+                {user.firstName}
+              </h1>
               <ProfileCard
-                name={fullName}
-                sub={mainUser.title}
-                dt1={mainUser.dt1}
-                dt2={mainUser.dt2}
-                dt3={mainUser.dt3}
+              // name={fullName}
+              // sub={mainUser.title}
+              // dt1={mainUser.dt1}
+              // dt2={mainUser.dt2}
+              // dt3={mainUser.dt3}
               ></ProfileCard>
             </Grid>
 
             {/* SETTINGS CARD */}
             <Grid item md={9}>
               <SettingsCard
-                firstName={mainUser.firstName}
-                lastName={mainUser.lastName}
-                midName={mainUser.midName}
-                phone={mainUser.phone}
-                email={mainUser.email}
-                pass={mainUser.pass}
-                gender={mainUser.gender}
+              // firstName={mainUser.firstName}
+              // lastName={mainUser.lastName}
+              // midName={mainUser.midName}
+              // phone={mainUser.phone}
+              // email={mainUser.email}
+              // pass={mainUser.pass}
+              // gender={mainUser.gender}
               ></SettingsCard>
             </Grid>
           </Grid>
         </Grid>
       </CssBaseline>
-    </ThemeProvider>
+    </UserMain.Provider>
   );
 }

@@ -21,3 +21,23 @@ X- Button Divider on top
 GLOBAL STATES?
 - Integrate SettingsCard into App or find another way 
 for components to access the same variables and props 
+
+// TYPESCRIPT
+export interface userType {
+  title: string;
+  dt1: number;
+  dt2: number;
+  dt3: number;
+  firstName: string;
+
+  lastName: string;
+  midName: string;
+
+  gender: string;
+
+  phone: string;
+
+  email: string;
+
+  pass: string;
+}
